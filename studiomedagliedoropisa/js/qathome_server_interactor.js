@@ -1,5 +1,4 @@
 var api_url = 'http://qathome.com/api/v1/';
-//var api_url = 'http://192.168.1.6:8000/api/v1/';
 
 var users_url;
 var firms_url;
@@ -127,7 +126,6 @@ function firmIsOpen(firmURL) {
 }
 
 function openFirm(firmUrl) {
-	console.log('openFirm firmUrl ' + firmUrl);///
 	$.ajax({
 		url: firmUrl,
 		type : 'PATCH',
@@ -146,7 +144,6 @@ function openFirm(firmUrl) {
 }
 
 function closeFirm(firmUrl) {
-	console.log('closeFirm firmUrl ' + firmUrl);///
 	$.ajax({
 		url: firmUrl,
 		type : 'PATCH',
@@ -159,13 +156,12 @@ function closeFirm(firmUrl) {
             console.log('The following error occured: ' + textStatus, errorThrown);
         },
 		success: function(data, textStatus, jqXHR) {
-			console.log('closeFirm firm successfully closed!');///
+			console.log('closeFirm firm successfully closed!');
 		}
     });
 }
 
 function openDesk(deskURL) {
-	console.log('openDesk deskURL = ' + deskURL);
 	$.ajax({
 		url: deskURL,
 		type : 'PATCH',
@@ -184,7 +180,6 @@ function openDesk(deskURL) {
 }
 
 function closeDesk(deskURL) {
-	console.log('openDesk deskURL = ' + deskURL);
 	$.ajax({
 		url: deskURL,
 		type : 'PATCH',
@@ -203,7 +198,6 @@ function closeDesk(deskURL) {
 }
 
 function getNextTicket(nextTicketURL){
-	console.log('getNextTicket nextTicketURL = ' + nextTicketURL);///
 	var ticket = [];
 	$.ajax({
 		url: nextTicketURL,
@@ -234,4 +228,34 @@ function getFirmWaitingUsers(firmURL) {
 		}
     });
 	return firmWaitingUsers;
+}
+
+function getFirstTicketToServe(firstTicketURL) {
+	var firstTicketToServe = [];
+	$.ajax({
+		url: firstTicketURL,
+		async: false,
+		beforeSend: function(xhr, settings) {
+			xhr.setRequestHeader('Authorization', 'Basic ' + btoa(loggedUserName + ':' + loggedPassword));
+		},
+		success: function(data, textStatus, jqXHR) {
+			firstTicketToServe = data;
+		}
+    });
+	return firstTicketToServe;
+}
+
+function getNextTicketToServe(nextTicketURL) {
+	var nextTicketToServe = [];
+	$.ajax({
+		url: nextTicketURL,
+		async: false,
+		beforeSend: function(xhr, settings) {
+			xhr.setRequestHeader('Authorization', 'Basic ' + btoa(loggedUserName + ':' + loggedPassword));
+		},
+		success: function(data, textStatus, jqXHR) {
+			nextTicketToServe = data;
+		}
+    });
+	return nextTicketToServe;
 }
