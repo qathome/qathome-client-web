@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="saltacoda, salvatempo" />
+		<meta name="description" content="Qathome ti consente di risparmiare ore ed ore di attesa in fila negli uffici abilitati" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+		<meta name="format-detection" content="telephone=no" />
+		<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900|Quicksand:400,700|Questrial" rel="stylesheet" />
+		<link href="../css/default.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="../css/fonts.css" rel="stylesheet" type="text/css" media="all" />
+		<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+		<title>Qathome - Il saltacoda web</title>
+	</head>
+	<body>
+		<div id="header-wrapper">
+			<div id="header" class="container">
+				<div id="logo">
+					<img src="../images/logo.png" width="172" height="100" />
+				</div>
+			</div>
+		</div>
+		<div id="login-wrapper">
+			<div id="login" class="container login_link_or_username"></div>
+		</div>
+		<div class="wrapper content"></div>
+		<div id="copyright">
+			<p>&copy; 2015 qathome - All rights reserved.</p>
+		</div>
+		<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="js/qathome_server_interactor.js"></script>
+		<script type="text/javascript" src="js/qathome_lib.js"></script>
+		<script type="text/javascript">
+			initServerCommunication();
+			loadLoginPage();
+		</script>
+	</body>
+</html>
