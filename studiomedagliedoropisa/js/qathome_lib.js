@@ -97,6 +97,15 @@ function loadFirmPage() {
 				closeFirm(firmURL);
 				loadFirmPage();
 			});
+			$('.give_ticket').on('click',function(){
+				var ticket = getNextTicket(ticketsURL);
+				alert('Dai all\'utente un ticket con numero: ' + ticket['user_code']);
+				var waitingUsers = parseInt(getFirmWaitingUsers(firmURL))
+				$('.people_on_queue').html(waitingUsers);
+				if(waitingUsers === 1) {
+					$('.serving').html('Non stai servendo');
+				}
+			});
 		});
 	} else {
 		loadPage('desk_closed', function(){
