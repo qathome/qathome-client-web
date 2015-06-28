@@ -59,13 +59,13 @@ a:hover
 	font-size:50px;
 }
 
-.login_link,.register_link,.logout_link,.send_mail_link,.back_to_firm{
+.login_link,.register_link,.logout_link,.send_mail_link,.back_to_firm,.back_to_home{
 	color: rgba(255,255,255,0.8);
 	text-decoration:underline;
 	cursor:pointer;
 }
 
-.login_link:hover,.register_link:hover,.logout_link:hover,.send_mail_link:hover,.back_to_firm:hover
+.login_link:hover,.register_link:hover,.logout_link:hover,.send_mail_link:hover,.back_to_firm:hover,.back_to_home:hover
 {
 	color:#FFFFFF
 }

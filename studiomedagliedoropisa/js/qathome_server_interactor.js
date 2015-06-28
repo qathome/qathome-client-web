@@ -107,6 +107,18 @@ function getFirmName(firmURL) {
 	return firmName;
 }
 
+function getFirmNameNotLogged(firmURL) {
+	var firmName = 'ERROR!';
+	$.ajax({
+		url: firmURL,
+		async: false,
+		success: function(data, textStatus, jqXHR) {
+			firmName = data['name'];
+		}
+    });
+	return firmName;
+}
+
 function firmIsOpen(firmURL) {
 	var firmIsOpen = false;
 	$.ajax({
@@ -230,6 +242,18 @@ function getFirmWaitingUsers(firmURL) {
 	return firmWaitingUsers;
 }
 
+function getFirmWaitingUsersNotLogged(firmURL) {
+	var firmWaitingUsers = 'ERROR!';
+	$.ajax({
+		url: firmURL,
+		async: false,
+		success: function(data, textStatus, jqXHR) {
+			firmWaitingUsers = data['waiting_users'];
+		}
+    });
+	return firmWaitingUsers;
+}
+
 function getFirstTicketToServe(firstTicketURL) {
 	var firstTicketToServe = [];
 	$.ajax({
@@ -258,4 +282,21 @@ function getNextTicketToServe(nextTicketURL) {
 		}
     });
 	return nextTicketToServe;
+}
+
+function getNextTicket(ticketsURL) {
+	var nextTicket = [];
+	$.ajax({
+		url: ticketsURL,
+		async: false,
+		type: 'POST',
+		data : {
+			type: 'N',
+			queue_choices: 'A'
+		},
+		success: function(data, textStatus, jqXHR) {
+			nextTicket = data;
+		}
+    });
+	return nextTicket;
 }

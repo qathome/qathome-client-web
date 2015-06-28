@@ -23,7 +23,12 @@
 		<div id="login-wrapper">
 			<div id="login" class="container login_link_or_username"></div>
 		</div>
-		<div class="wrapper content"></div>
+		<div class="wrapper content">
+			<div id="welcome" class="container">
+				<h2 class="firm_name"></h2>
+				<div class="button big_text take_ticket"><span class="big_text">Prendi il biglietto</span></div>
+			</div>
+		</div>
 		<div id="copyright">
 			<p>&copy; 2015 qathome - All rights reserved.</p>
 		</div>
@@ -32,7 +37,11 @@
 		<script type="text/javascript" src="js/qathome_lib.js"></script>
 		<script type="text/javascript">
 			initServerCommunication();
-			loadLoginPage();
+			var firmURL = getFirmURL();
+			var firmName = getFirmNameNotLogged(firmURL);
+			$('.firm_name').html(firmName);
+			$('.take_ticket').on('click',loadTicketPage);
+			loadNotLoggedLoginBar();
 		</script>
 	</body>
 </html>

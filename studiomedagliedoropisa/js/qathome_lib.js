@@ -5,6 +5,13 @@ var contentNode = null;
 //var deskURL = null;
 var firmURL = 'http://qathome.com/api/v1/firms/5317a482-8483-3e7d-a17f-2dbc5d4b080f/';
 var deskURL = 'http://qathome.com/api/v1/firms/5317a482-8483-3e7d-a17f-2dbc5d4b080f/desks/1/';
+var ticketsURL = 'http://qathome.com/api/v1/firms/5317a482-8483-3e7d-a17f-2dbc5d4b080f/tickets/';
+var firstDone = false;
+var currentTicketIDForFirm;
+
+function getFirmURL() {
+	return firmURL;
+}
 
 function loadPage(pageToLoad, postLoadFunction) {
 	if (contentNode === null) {
@@ -16,6 +23,11 @@ function loadPage(pageToLoad, postLoadFunction) {
 function loadLoginBar() {
 	$('.login_link_or_username').html('Benvenuto, ' + getLoggedUserName() + ' - <a href="#" class="logout_link">Logout</a>');
 	$('.logout_link').on('click',logUserOut);
+}
+
+function loadNotLoggedLoginBar() {
+	$('.login_link_or_username').html('<a href="#" class="login_link">Login</a>');
+	$('.login_link').on('click',loadLoginPage);
 }
 
 function logUserOut() {
@@ -44,11 +56,12 @@ function loadLoginPage() {
 				}
 			}
 		});
+		$('.login_link_or_username').html('');
+		$('.back_to_home').on('click',function(){
+			window.location = 'index.html';
+		});
 	});
 }
-
-var firstDone = false;
-var currentTicketIDForFirm;
 
 function loadFirmPage() {
 	
@@ -95,4 +108,21 @@ function loadFirmPage() {
 			});
 		});
 	}
+}
+
+function loadTicketPage() {
+	var ticket = getNextTicket(ticketsURL);
+	loadPage('ticket', function(){
+		var firmURL = getFirmURL();
+		var firmName = getFirmNameNotLogged(firmURL);
+		var waitingUsers = getFirmWaitingUsersNotLogged(firmURL);
+		$('.firm_name').html(firmName);
+		$('.back_to_firm').on('click',function(){
+			window.location = 'index.html';
+		});
+		$('.number').html(ticket['user_code']);
+		var intWaitingUsers = parseInt(waitingUsers);
+		intWaitingUsers --;
+		$('.people_before_you').html(intWaitingUsers);
+	});
 }
